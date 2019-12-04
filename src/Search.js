@@ -8,11 +8,16 @@ function Search() {
   }
 
   const handleSubmit = () => {
-    console.log(document.getElementById('query').value);
+    const query = document.getElementById('query').value;
+    fetch(`http://localhost:3001/api/searchYT/${query}`, {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(res => console.log('Response!', res));
   };
 
   return (
-    <div className='Search'>
+    <div className='search'>
       <input id='query' type='text' onKeyPress={handleKeyPress} />
       <button className='searchVideo' type='button' onClick={handleSubmit}>Search</button>
     </div>
